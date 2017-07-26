@@ -5,7 +5,25 @@ So, you want to learn some R. Well, strap on and strap in.
 
 ### Our psychophysical data
 
-We usually use repeated measures. What does typical data look like?
+We usually use repeated measures. What does typical data look like? Let's say we have data of 3 participants, each have 5 trials on which they responded
+yes or no (1 or 0).
+
+```{r Load table of data, include=FALSE}
+  npp = 3
+  ntrials = 5
+  ntrialstot = npp * ntrials
+  
+  Trial = rep(1:ntrials, npp)
+  Participant = c(rep(1, ntrials), rep(2, ntrials), rep(3, ntrials))
+  Response = round(runif(ntrialstot, 0, 1.4))
+  df = data.frame("Participant" = Participant, "Trial" = Trial, "Response" = Response)
+```
+
+```{r Show table of data, echo=FALSE, fig.width=1}
+  library(knitr)
+  kable(df, format = 'html')
+  
+```
 
 ### Generated data
 
@@ -15,11 +33,16 @@ In this case we will generate some data.
 
 To load our data we usually want to use the read.table or read.csv functions.
 Be aware that if you copy-paste the location of the document (i.e. "C:\Users\Documents...") that you have to invert the slashes (from '\' to '/') at least on a 
-windows computer.
+windows computer. For example, to load up a file @ C:\Users\Documents\data.csv and save it in a variable called 'df' we would run the following code.
 
-```{r}
-    plot(cars)
+Again, the following DOESN'T work.
+```{r readtable, eval = FALSE}
+    df = read.csv("C:\Users\Documents\data.csv")
+```
 
+This DOES work.
+```{r readtable2, eval = FALSE}
+    df = read.csv("C:/Users/Documents/data.csv")
 ```
 
 ## Going beyond basic R
@@ -27,16 +50,18 @@ windows computer.
 ### Installing packages
 
 To install packages use the following command.
-```{r}
+```{r Install packages, eval=FALSE}
     install.packages("lme4")
 ```
-To then load the package and to be actually able to use the functions, use the following command.
-```{r}
+
+To then load the package, and to be actually able to use the functions, use the following command.
+```{r Load package, eval=FALSE}
     library("lme4")
 ```
-A quick way to install a couple of packages in one go is to make a list of packages you want to install, and use a for loop to install/activate them.
 
-```{r}
+
+A quick way to install a couple of packages in one go is to make a list of packages you want to install, and use a for loop to install/activate them.
+```{r Simple for loop for packages, eval=FALSE}
     listOfPackages = c("lme4", "ggplot2")
     for (package in listofPackages){
       install.packages(package)
