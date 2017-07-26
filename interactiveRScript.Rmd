@@ -1,8 +1,48 @@
 
+## Introduction
+
+So, you want to learn some R. Well, strap on and strap in.
+
+### Our psychophysical data
+
+We usually use repeated measures. What does typical data look like?
+
+### Generated data
+
+In this case we will generate some data.
+
+### Loading your data
+
+To load our data we usually want to use the read.table or read.csv functions.
+Be aware that if you copy-paste the location of the document (i.e. "C:\Users\Documents...") that you have to invert the slashes (from '\' to '/') at least on a 
+windows computer.
 
 ```{r}
-plot(cars)
+    plot(cars)
+
 ```
 
+## Going beyond basic R
+
+### Installing packages
+
+To install packages use the following command.
+```{r}
+    install.packages("lme4")
+```
+To then load the package and to be actually able to use the functions, use the following command.
+```{r}
+    library("lme4")
+```
+A quick way to install a couple of packages in one go is to make a list of packages you want to install, and use a for loop to install/activate them.
+
+```{r}
+    listOfPackages = c("lme4", "ggplot2")
+    for (package in listofPackages){
+      install.packages(package)
+      library(package)
+    }
+
+```
 
 
